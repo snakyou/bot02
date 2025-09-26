@@ -41,6 +41,20 @@ async def photo_send(message: telebot.types.Message):
     with open('test.png', 'rb') as new_file:
         await bot.send_photo(message.chat.id, new_file)
 
+@bot.message_handler(commands=["throw"])
+def send_number(message):
+    bot.reply_to(
+        message, random.randint(1, 6)
+    )
+
+@bot.message_handler(commands=["coin"])
+def send_coin(message):
+    text = ["орёл", "решка"]
+
+    bot.reply_to(
+        message, random.choice(text)
+    )
+
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
     bot.reply_to(message, message.text)
